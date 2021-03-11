@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/wrp90/TeamProfileGenWP/issues"
   },
-  "homepage": "https://github.com/wrp90/TeamProfileGenWP#readme"
+  "homepage": "https://github.com/wrp90/TeamProfileGenWP#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
 }
