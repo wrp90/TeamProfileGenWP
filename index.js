@@ -23,7 +23,7 @@ function init() {
         },
         {
             type: 'input',
-            message: 'Please enter team manager email adress.',
+            message: 'Please enter team manager email.',
             name: 'email',
         },
         {
@@ -48,18 +48,23 @@ function init() {
             inquirer.prompt([
                 {
                    type: 'input',
-                   message: 'Please enter Engeneer name.',
+                   message: 'Please enter Engineer name.',
                    name: 'name', 
                 },
                 {
                     type: 'input',
-                    message: 'Please enter Engeneer ID.',
+                    message: 'Please enter Engineer ID.',
                     name: 'ID',
                 },
                 {
                     type: 'input',
-                    message: 'Please enter Engeneer GitHub username.',
-                    name: 'Git',
+                    message: 'Please enter Engineer email',
+                    name: 'email'
+                },
+                {
+                    type: 'input',
+                    message: 'Please enter Engineer GitHub username.',
+                    name: 'git',
                 },
             ])
         //Add Intern prompt
@@ -77,7 +82,7 @@ function init() {
                 },
                 {
                     type: 'input',
-                    message: 'Please enter intern email.',
+                    message: 'Please enter Intern email.',
                     name: 'email',
                 },
                 {
