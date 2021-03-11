@@ -1,8 +1,12 @@
 //Global Variables
 const fs = require('fs');
 const inquirer = require('inquirer');
+
+//Class variables
+const Employee = require('./lib/Employee');
+const Manager = require('./lib/Manager');
+//Full team array
 const teamArray = [];
-console.log(teamArray)
 
 //Init function with inquirer prompt to get info
 function init() {
@@ -35,11 +39,11 @@ function init() {
         },
     //Then function manipulating the response
     ]).then(response => {
-        console.log(response)
         //First option to finish building team
         if (response.addMember === 'Finish building team') {
-            // const addManager = new Manager (response.manName, response.manID, response. manEmail, response.manOfficeNum);
-            // teamArray.push(addManager);
+            const addManager = new Manager (response.name, response.ID, response.email, response.office);
+            teamArray.push(addManager);
+            console.log(teamArray)
         } else if (response.addMember === 'Add an Engineer') {
             inquirer.prompt([
                 {
