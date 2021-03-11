@@ -73,7 +73,7 @@ function init() {
                 {
                     type: 'input',
                     message: 'Please enter Intern name.',
-                    name: 'Name',
+                    name: 'name',
                 },
                 {
                     type: 'input',
