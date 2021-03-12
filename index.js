@@ -7,6 +7,8 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const generateCards = require('./src/generatehtml');
+
 //Full team array
 const teamArray = [];
 
@@ -125,7 +127,10 @@ function addTeamMember(addMember) {
                 addTeamMember(response.addMember);
             })
         } else {
-            console.log(teamArray);
+            var card = generateCards(teamArray);
+            fs.writeFile('./dist/index.html', card, (err) => {
+                err ? console.error(err) : console.log('Page Generated!')
+            })
         }
         // else 
         // -- you have an array
