@@ -35,18 +35,22 @@ function init() {
         },
         {
             type: 'list',
-            message: 'Please select one of the following options.',
+            message: 'Would you like to add another team member?.',
             name: 'addMember',
             choices: ['Add an Engineer', 'Add an Intern', 'Finish building team']
         },
     //Then function manipulating the response
     ]).then(response => {
-        //First option to finish building team
-        if (response.addMember === 'Finish building team') {
-            const addManager = new Manager (response.name, response.ID, response.email, response.office);
-            teamArray.push(addManager);
-            console.log(teamArray)
-        } else if (response.addMember === 'Add an Engineer') {
+        const addManager = new Manager (response.name, response.ID, response.email, response.office);
+        teamArray.push(addManager);
+        addTeamMember(response.addMember);
+    })
+}
+
+function addTeamMember(addMember) {
+        // if they addMember was engineer
+        if (addMember === 'Add an Engineer') {
+            // -- prompt eng questions and if they want to add another employee
             inquirer.prompt([
                 {
                    type: 'input',
@@ -68,13 +72,23 @@ function init() {
                     message: 'Please enter Engineer GitHub username.',
                     name: 'git',
                 },
+                {
+                    type: 'list',
+                    message: 'Would you like to add another team member?.',
+                    name: 'addMember',
+                    choices: ['Add an Engineer', 'Add an Intern', 'Finish building team']
+                },
             ]).then(response => {
-                const addEngineer = new Engineer (response.name, response.ID, response.email, response.git);
+                // -- -- create the eng
+                const addEngineer = new Engineer(response.name, response.ID, response.email, response.git);
+                // -- -- add the eng to the teamarray
                 teamArray.push(addEngineer);
-                // additionalEngineer();
+                // -- -- call addTeamMebmer again
+                addTeamMember(response.addMember);
             })
-        //Add Intern prompt
-        } else if (response.addMember === 'Add an Intern') {
+            // else if they wanted to add intern
+        } else if (addMember === 'Add an Intern') {
+            // --  prompt intern questions and if they want to add another employee
             inquirer.prompt([
                 {
                     type: 'input',
@@ -96,98 +110,29 @@ function init() {
                     message: 'Please enter Intern School.',
                     name: 'school',
                 },
+                {
+                    type: 'list',
+                    message: 'Would you like to add another team member?.',
+                    name: 'addMember',
+                    choices: ['Add an Engineer', 'Add an Intern', 'Finish building team']
+                },
             ]).then(response => {
+                // -- -- create the intern
                 const addIntern = new Intern(response.name, response.ID, response.email, response.school);
+                // -- -- add the int to the teamarray
                 teamArray.push(addIntern);
-                // additionalIntern();
+                // -- -- call addTeamMebmer again
+                addTeamMember(response.addMember);
             })
+        } else {
+            console.log(teamArray);
         }
-    })
+        // else 
+        // -- you have an array
+        // -- write a string that looks like hmtl statrter coder
+        // -- for each item in that array write a string that looks like html
+        // -- use fs to turn that string into an html file
 }
-
-// function additionalEngineer() {
-//     inquirer.prompt([
-//         {
-//             type: 'confirm',
-//             message: 'Would you like to add another team member of the same position?',
-//             name: 'additionalMember',
-//         }        
-//     ]).then(response => {
-//         if (response.additionalMember === true) {
-//             inquirer.prompt([
-//                 {
-//                    type: 'input',
-//                    message: 'Please enter Engineer name.',
-//                    name: 'name', 
-//                 },
-//                 {
-//                     type: 'input',
-//                     message: 'Please enter Engineer ID.',
-//                     name: 'ID',
-//                 },
-//                 {
-//                     type: 'input',
-//                     message: 'Please enter Engineer email',
-//                     name: 'email'
-//                 },
-//                 {
-//                     type: 'input',
-//                     message: 'Please enter Engineer GitHub username.',
-//                     name: 'git',
-//                 },
-//             ]).then(response => {
-//                 const addEngineer = new Engineer (response.name, response.ID, response.email, response.git);
-//                 teamArray.push(addEngineer);
-//                 additionalMem();
-//             })
-//         } else {
-//             const addEngineer = new Engineer (response.name, response.ID, response.email, response.git);
-//             teamArray.push(addEngineer);
-//         }
-//     })
-// }
-
-// function additionalIntern() {
-//     inquirer.prompt([
-//         {
-//             type: 'confirm',
-//             message: 'Would you like to add another team member of the same position?',
-//             name: 'additionalMember',
-//         }        
-//     ]).then(response => {
-//         if (response.additionalMember === true) {
-//             inquirer.prompt([
-//                 {
-//                     type: 'input',
-//                     message: 'Please enter Intern name.',
-//                     name: 'name',
-//                 },
-//                 {
-//                     type: 'input',
-//                     message: 'Please enter Intern ID.',
-//                     name: 'ID',
-//                 },
-//                 {
-//                     type: 'input',
-//                     message: 'Please enter Intern email.',
-//                     name: 'email',
-//                 },
-//                 {
-//                     type: 'input',
-//                     message: 'Please enter Intern School.',
-//                     name: 'school',
-//                 },
-//             ]).then(response => {
-//                 const addIntern = new Intern(response.name, response.ID, response.email, response.school);
-//                 teamArray.push(addIntern);
-//             })
-//         } else (response.additionalMember === false) {
-//             const addIntern = new Intern(response.name, response.ID, response.email, response.school);
-//             teamArray.push(addIntern);
-//         }
-//     })
-// }
-
 
 init();
 
