@@ -4,8 +4,8 @@ const Employee = require ('../lib/Employee');
 
 describe('Employee', () => {
 
-    describe('Constructor', () => {
-        it('should return employee object', () => {
+    describe('Employee Constructor', () => {
+        it('should return employee attributes', () => {
             const empName = '';
             const empID = 1;
             const empEmail = 'wpapp90@gmail.com';
@@ -46,7 +46,7 @@ describe('Employee', () => {
     describe('getRole', () => {
         it('should return the Employee role', () => {
             const empName = '';
-            const empID = '';
+            const empID = 1;
             const empEmail = '';
 
             const newObject = new Employee(empName, empID, empEmail);
