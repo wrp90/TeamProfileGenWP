@@ -26,16 +26,24 @@ const htmlTemp =
 
 function managerCard(response) {
     console.log('Team Array generatehtml:', response)
-    return managerCard = `
-    <div class="card" style="width: 18rem;">
-        <h2>${response.name}</h2>
-        <h4>Manager<h4>
-        <p>ID: ${response.id}</p>
-        <p>Email: <a href="mailto:${response.email}">${response.email}</a></p>
-        <p>Office Number: ${response.office}</p>
-    </div>
-    `
+    const htmlArray = [];
+    for (let i=0; i < response.length; i++) {
+        const managerCard = `
+        <div class="card" style="width: 18rem;">
+            <h2>${response[i].name}</h2>
+            <h4>Employee<h4>
+            <p>ID: ${response[i].ID}</p>
+            <p>Email: <a href="mailto:${response[i].email}">${response[i].email}</a></p>
+            <p>Office Number/Github/School: ${response[i].office}</p>
+        </div>
+        `
+        htmlArray.push(managerCard);
+    }
+    return htmlArray;
 }
+
+
+
 
 
 module.exports = managerCard;

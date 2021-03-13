@@ -7,7 +7,7 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const managerCard = require('./src/generatehtml.js');
+const generatedHtml = require('./src/generatehtml.js');
 
 //Full team array
 const teamArray = [];
@@ -127,7 +127,7 @@ function addTeamMember(addMember) {
                 addTeamMember(response.addMember);
             })
         } else {
-            var card = managerCard(teamArray);
+            var card = generatedHtml(teamArray).join('');
             fs.writeFile('./dist/index.html', card, (err) => {
                 err ? console.error(err) : console.log('Page Generated!')
             })
@@ -140,11 +140,6 @@ function addTeamMember(addMember) {
         // -- use fs to turn that string into an html file
 }
 
-// module.exports = {
-//     getRArray: function(teamArray) {
-//       return teamArray;
-//     }
-// };
 
 
 init();
