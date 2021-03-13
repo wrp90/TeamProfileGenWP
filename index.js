@@ -127,6 +127,7 @@ function addTeamMember(addMember) {
                 addTeamMember(response.addMember);
             })
         } else {
+            console.log(teamArray)
             var card = generateCards(teamArray);
             fs.writeFile('./dist/index.html', card, (err) => {
                 err ? console.error(err) : console.log('Page Generated!')
