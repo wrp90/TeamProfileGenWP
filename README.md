@@ -14,8 +14,7 @@
     * When you've entered in all the information, an HTML page will be generated with employee cards displaying the info. 
 
 # Tests
-    * The following video has test demonstrations.
-    * https://drive.google.com/file/d/1wkW4nl_DgEYrWGUbq2F9uN5WBY20HP2Q/view
+![Getting Started](./assets/imgs/tests.png)
 
 # Questions
     * Email: wpapp90@gmail.com
