@@ -48,9 +48,7 @@ describe('Employee', () => {
             const empName = '';
             const empID = 1;
             const empEmail = '';
-
             const newObject = new Employee(empName, empID, empEmail);
-
             expect(newObject.getRole()).toBe('Employee')
         })
     });

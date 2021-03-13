@@ -17,16 +17,26 @@ describe('Manager', () => {
         });
     });
 
+    describe('getOffice', () => {
+        it('should return the Manager office number', () => {
+            const manName = '';
+            const manID = 12;
+            const manEmail = 'wpapp90@gmail.com';
+            const officeNum = 1234;
+            const newObject = new Manager(manName, manID, manEmail, officeNum);
+            expect(newObject.getOffice()).toEqual(expect.any(Number));
+        })
+    });
+
+
     describe('getRole', () => {
         it('should return the Manager role', () => {
             const manName = '';
             const manID = 12;
             const manEmail = '';
-            const officeNum = 1234
-
+            const officeNum = 1234;
             const newObject = new Manager(manName, manID, manEmail, officeNum);
-
-            expect(newObject.getRole()).toBe('Manager')
+            expect(newObject.getRole()).toBe('Manager');
         })
     });
 })
