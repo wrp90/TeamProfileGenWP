@@ -7,7 +7,7 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const generatedHtml = require('./src/generatehtml.js');
+const generateHtml = require('./src/generatehtml.js');
 
 //Full team array
 const teamArray = [];
@@ -127,8 +127,8 @@ function addTeamMember(addMember) {
                 addTeamMember(response.addMember);
             })
         } else {
-            var card = generatedHtml(teamArray).join('');
-            fs.writeFile('./dist/index.html', card, (err) => {
+            var htmlString = generateHtml(teamArray);
+            fs.writeFile('./dist/index.html', htmlString, (err) => {
                 err ? console.error(err) : console.log('Page Generated!')
             })
             console.log('Team Array Index.js: ', teamArray)

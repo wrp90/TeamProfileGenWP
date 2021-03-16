@@ -1,5 +1,5 @@
 
-const htmlTemp = 
+const topHtml = 
 `<!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,39 +14,96 @@ const htmlTemp =
             <h1 class="ms-auto me-auto p-4">My Team</h1>
         </nav>
         <div class="container">
-            <div class="row row-cols-auto">     
+            <div class="row row-cols-auto"> `
+
+const bottomHtml = `
+            </div>   
         </div>
     </body>
 </html>`;
 
-
-
-
-
-
-function managerCard(response) {
-    console.log('Team Array generatehtml:', response)
-    const htmlArray = [];
-    for (let i=0; i < response.length; i++) {
-        const managerCard = `
-        <div class="card" style="width: 18rem;">
-            <h2>${response[i].name}</h2>
-            <h4>Employee<h4>
-            <p>ID: ${response[i].ID}</p>
-            <p>Email: <a href="mailto:${response[i].email}">${response[i].email}</a></p>
-            <p>Office Number/Github/School: ${response[i].office}</p>
-        </div>
-        `
-        htmlArray.push(managerCard);
+function generateHtml(empArray) {
+    // for each employee
+    let html = topHtml;
+    for (let employee = 0; employee < empArray.length; employee++) {
+        if (empArray[employee].getRole() === 'Intern') {
+            // -- if emp is intern
+            // -- -- add info to intern html
+            const internInfo = internCard(empArray[employee]);
+            // add intern info to the html
+            html = html + internInfo;
+        } else if (empArray[employee].getRole() === 'Manager') {
+            // -- els if manager
+            // -- -- add info to manger html
+            const managerInfo = managerCard(empArray[employee]);
+            // add manager info to the html
+            html = html + managerInfo;
+        } else { // if engineer
+            // -- else 
+            // -- add info to eng htm
+            const engineerInfo = engineerCard(empArray[employee]);
+            // add engineer info to the html
+            html = html + engineerInfo;
+        }
     }
-    return htmlArray;
+
+    
+    // creat a string w/ top, custom and bottom html
+    html = html + bottomHtml;
+    // return a  string that looks like html
+    return html;
 }
 
 
 
 
 
-module.exports = managerCard;
+
+
+function managerCard(manager) {
+    const managerCard = `
+    <div class="card" style="width: 18rem;">
+        <h2>${manager.name}</h2>
+        <h4>Manager<h4>
+        <p>ID: ${manager.ID}</p>
+        <p>Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
+        <p>Office Number: ${manager.office}</p>
+    </div>
+    `
+    return managerCard;
+}
+
+function internCard(intern) {
+    const internCard = `
+    <div class="card" style="width: 18rem;">
+        <h2>${intern.name}</h2>
+        <h4>Intern<h4>
+        <p>ID: ${intern.ID}</p>
+        <p>Email: <a href="mailto:${intern.email}">${intern.email}</a></p>
+        <p>School: ${intern.school}</p>
+    </div>
+    `
+    return internCard;
+}
+
+function engineerCard(engineer) {
+    const engineerCard = `
+    <div class="card" style="width: 18rem;">
+        <h2>${engineer.name}</h2>
+        <h4>Engineer<h4>
+        <p>ID: ${engineer.ID}</p>
+        <p>Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
+        <p>Github: ${engineer.git}</p>
+    </div>
+    `
+    return engineerCard;
+}
+
+
+
+
+
+module.exports = generateHtml;
 
 
 
